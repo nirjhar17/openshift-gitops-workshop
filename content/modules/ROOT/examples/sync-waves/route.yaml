@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: bgd
+  namespace: demo-waves
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    app: bgd
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: bgd
+  tls:
+    termination: edge
